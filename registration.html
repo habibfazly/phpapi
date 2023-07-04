@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+         function clearval()
+        {
+            var name=document.getElementById("name");
+            var namee=document.getElementById("namee");
+
+            var email=document.getElementById("email");
+            var emaile=document.getElementById("emaile");
+
+            var pwd=document.getElementById("pwd");
+            var pwde=document.getElementById("pwde");
+
+            var cpwd=document.getElementById("cpwd");
+            var cpwde=document.getElementById("cpwde");
+
+            var country=document.getElementById("country");
+            var countrye=document.getElementById("countrye");
+
+            name.value="";
+            namee.innerHTML="";
+            email.value="";
+            emaile.innerHTML="";
+            pwd.value="";
+            pwde.innerHTML="";
+            cpwd.value="";
+            cpwde.innerHTML="";
+            country.value="";
+            countrye.innerHTML="";
+
+
+        }
+        function validate()
+        {
+            var con=confirm("Do you want to submit this record");
+
+            if (con==true)
+            {
+            var name=document.getElementById("name");
+            var namee=document.getElementById("namee");
+
+            var email=document.getElementById("email");
+            var emaile=document.getElementById("emaile");
+
+            var pwd=document.getElementById("pwd");
+            var pwde=document.getElementById("pwde");
+
+            var cpwd=document.getElementById("cpwd");
+            var cpwde=document.getElementById("cpwde");
+
+            var country=document.getElementById("country");
+            var countrye=document.getElementById("countrye");
+
+            var emailval=email.value;
+            var pos=emailval.indexOf("@");
+
+           
+            var pos2=emailval.indexOf(".");
+
+            console.log(pos);
+            console.log(pos2);
+            if (name.value=="")
+            {
+                alert("name must be entered");
+                name.focus();
+                namee.innerHTML="<b>name must be entered</b>";
+            }
+            
+            else if (email.value=="")
+            {
+                alert("email must be entered");
+                email.focus();
+                namee.innerHTML="";
+                emaile.innerHTML="<b>email must be entered</b>";
+            }
+            else if (pos<1)
+            {
+                alert("email must be in proper format");
+                email.focus();
+                namee.innerHTML="";
+                emaile.innerHTML="<b>email must be in proper format</b>";
+            }
+            else if (pwd.value=="")
+            {
+                alert("pwd must be entered");
+                pwd.focus();
+              
+                pwde.innerHTML="<b>pwd must be entered</b>";
+            }
+            else if (pwd.value!=cpwd.value)
+            {
+                alert("pwd and confirm pwd must be same");
+                pwd.focus();
+               
+                cpwde.innerHTML="<b>pwd and confirm pwd must be same</b>";
+            }
+            else if (country.value=="-1")
+            {
+                alert("country must be selected");
+                country.focus();
+               
+                countrye.innerHTML="<b>country must be selected</b>";
+            }
+            else
+            {
+                var employee={};
+                employee.name=name.value;
+                employee.email=email.value;
+                employee.pwd=pwd.value;
+                employee.country=country.value;
+
+                console.log(employee);
+
+                window.location="confirmpage.html";
+            }
+        }
+        else
+        {
+            alert("You select select cancel button");
+        }
+
+        }
+
+        function citydata(id)
+        {
+           
+
+            var pakistan=["Karachi","Lahore","Islamabad"];
+            var india=["Dehli","Mombay","Kashmeer"];
+
+            var cityid=document.getElementById("city");
+           
+            cityid.innerHTML ="";
+
+            if (id==0)
+            for (var i=0; i<india.length; i++)
+            {
+                cityid.innerHTML += "<option value="+i+">"+india[i]+"</option>";
+                   
+            }
+
+            if (id==2)
+            for (var i=0; i<pakistan.length; i++)
+            {
+                cityid.innerHTML += "<option value="+i+">"+pakistan[i]+"</option>";
+                   
+            }
+        }
+
+        function checkall()
+        {
+            var hob=document.getElementsByName("Hobbies");
+
+            for (var i=0; i<hob.length; i++)
+            {
+                hob[i].checked=true;
+            }
+        }
+
+        function uncheckall()
+        {
+            var hob=document.getElementsByName("Hobbies");
+
+            for (var i=0; i<hob.length; i++)
+            {
+                hob[i].checked=false;
+            }
+        }
+
+        function init()
+        {
+        var br=navigator.appName;
+        console.log(br);
+
+        if (br=="Netscape")
+        {
+            //FOR DATE AND TIME FUNCTION
+            var dt=new Date();
+            var t=document.getElementById("top");
+            var t2=document.getElementById("top2");
+
+            t.innerHTML=dt.getDate()+"-"+dt.getMonth()+"-"+dt.getFullYear();
+            t2.innerHTML=dt.getHours()+":"+dt.getMinutes()+"-"+dt.getSeconds();
+            
+            //FOR COUNTRY LIST
+
+            var country=["Pakistan","India","Iran","japan"];
+            var conid=document.getElementById("country");
+            var scountry=country.sort();
+
+            for (var i=0; i<scountry.length; i++)
+            {
+                conid.innerHTML += "<option value="+i+">"+scountry[i]+"</option>";
+                   
+            }
+        }
+        else
+        {
+           // alert("Your browser is too old please choose Netscape for this site");
+            Window.location="newbrowser.html";
+        }
+
+        }
+
+        window.onload =init;
+    </script>
+</head>
+<body>
+    <h1>Registration page</h1>
+    <span id="top"></span>
+    <span id="top2"></span>
+    <form action="">
+    <table>
+        <tr>
+            <td>Enter Name</td>
+            <td><input type="text" name="name" id="name"></td>
+            <td><span id="namee"></span></td>
+        </tr>
+        <tr>
+            <td>Enter Email</td>
+            <td><input type="email" name="email" id="email"></td>
+            <td><span id="emaile"></span></td>
+        </tr>
+        <tr>
+            <td>Enter Password</td>
+            <td><input type="password" name="pwd" id="pwd"></td>
+            <td><span id="pwde"></span></td>
+        </tr>
+        <tr>
+            <td>Enter Confirm Password</td>
+            <td><input type="password" name="cpwd" id="cpwd"></td>
+            <td><span id="cpwde"></span></td>
+        </tr>
+        <tr>
+            <td>Enter address</td>
+            <td><textarea name="address" id="address" cols="30" rows="10"></textarea></td>
+            <td><span id="addresse"></span></td>
+        </tr>
+        <tr>
+            <td>Gender</td>
+            <td>
+                <input type="radio" name="gender" id="gen1" value="Male"> Male
+                <input type="radio" name="gender" id="gen2" value="FeMale"> FeMale
+            </td>
+            <td><span id="gendere"></span></td>
+        </tr>
+        <tr>
+            <td>Hobbies</td>
+            <td>                
+                <input type="checkbox" name="Hobbies" id="hob1" value="reading"> Reading
+                <input type="checkbox" name="Hobbies" id="hob2" value="writing"> writing
+                <input type="checkbox" name="Hobbies" id="hob3" value="reading2"> reading2
+                <input type="checkbox" name="Hobbies" id="hob4" value="writing2"> writing2
+
+                <input type="button" value="Check All" onclick="checkall()">|| <input type="button" value="Un Check All" onclick="uncheckall()">
+            </td>
+            <td><span id="hobe"></span></td>
+        </tr>
+        <tr>
+            <td>Select Country</td>
+            <td>
+                <select name="country" id="country" onchange="citydata(this.value)">
+                    <option value="-1">Please select country</option>
+                  
+                </select>
+
+            </td>
+            <td><span id="countrye"></span></td>
+        </tr>
+        <tr>
+            <td>Select City</td>
+            <td>
+                <select name="city" id="city">
+                    <option value="-1">Please select city</option>
+                   
+                </select>
+            </td>
+            <td><span id="citye"></span></td>
+        </tr>
+        <tr>
+            <td>Enter Code</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td><input type="button" value="submit" onclick="validate()"></td>
+            <td><input type="button" value="Clear" onclick="clearval()"></td>
+        </tr>
+    </table>
+</form>
+</body>
+</html>
